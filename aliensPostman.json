@@ -1,0 +1,1290 @@
+{
+	"info": {
+		"_postman_id": "3f503e6b-3823-4d43-a4bc-26b77a5bdfcf",
+		"name": "Coun of money",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Single test",
+			"item": [
+				{
+					"name": "Users test",
+					"item": [
+						{
+							"name": "add user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    console.log(jsonData)",
+											"    pm.expect(jsonData.data.state).to.equal(true);",
+											"});",
+											"",
+											"pm.test(\"Is return id\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.id).not.to.equal(undefined)",
+											"});",
+											"",
+											"pm.test(\"userId env is set\", function () {",
+											"    var userId = pm.response.json().data.id;",
+											"    pm.environment.set(\"userId\", userId);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"cameron@epitech.eu\",\n    \"username\" : \"cameron\",\n    \"role\" : \"admin\",\n    \"password\" : \"123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get users",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is return data\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.data).not.to.equal(undefined)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzNzgzMzI5OCwiZXhwIjoxNjM4NDM4MDk4fQ.dfr2qy7XXmw6K4OLgSzSjjr7EHiDQkX6j5I6coxne2A",
+										"description": "admin\n",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get users by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user getted\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.state).to.equal(true);",
+											"});",
+											"",
+											"pm.test(\"Is return data\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.id).not.to.equal(undefined)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzNzgzMzI5OCwiZXhwIjoxNjM4NDM4MDk4fQ.dfr2qy7XXmw6K4OLgSzSjjr7EHiDQkX6j5I6coxne2A",
+										"description": "admin cameron",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/619f5a52d58ae12ccbb099a1",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"619f5a52d58ae12ccbb099a1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get users by mail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"username saved\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.username).not.to.equal(undefined)",
+											"});",
+											"",
+											"pm.test(\"email saved\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.email).not.to.eql(undefined) ",
+											"});",
+											"",
+											"pm.test(\"role saved\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.role).not.to.eql(undefined) ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzNzgzMzI5OCwiZXhwIjoxNjM4NDM4MDk4fQ.dfr2qy7XXmw6K4OLgSzSjjr7EHiDQkX6j5I6coxne2A",
+										"description": "admin cameron",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/getUserByMail?email=cameron@epitech.eu",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"getUserByMail"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "cameron@epitech.eu"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"username saved\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.username).not.to.equal(undefined)",
+											"});",
+											"",
+											"pm.test(\"email saved\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.email).not.to.eql(undefined) ",
+											"});",
+											"",
+											"pm.test(\"role saved\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.role).not.to.eql(undefined) ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzNzgzMzI5OCwiZXhwIjoxNjM4NDM4MDk4fQ.dfr2qy7XXmw6K4OLgSzSjjr7EHiDQkX6j5I6coxne2A",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"cameron@epitech.eu\",\n    \"username\" : \"Cameron\",\n    \"role\" : \"admin\",\n    \"password\" : \"123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/users/619f524a0b0cd6447498177b",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"619f524a0b0cd6447498177b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"user added\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/61be681a299280bef827e38a",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"61be681a299280bef827e38a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"cameron@epitech.eu\",\n    \"password\" : \"123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/login",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Article test",
+					"item": [
+						{
+							"name": "create article",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Article test\",\n    \"source\": \"https://Article.test.com\",\n    \"content\": \"Ceci est la description du super test article\",\n    \"tags\": [\"Crypto\", \"Test\",\"Lol\", \"BTC\"],\n    \"image\": \"\",\n    \"visible\": true,\n    \"published_at\": \"2021-01-01 08:30:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/articles/",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get articles",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/articles?title=First,",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "First,"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get article by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/articles/61be69b670cdb5e2e5422fe6",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles",
+										"61be69b670cdb5e2e5422fe6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update article",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Article TEST\",\n    \"source\": \"https://Article.test.com\",\n    \"content\": \"Ceci est la description du super test article\",\n    \"tags\": [\"Crypto\", \"Test\",\"Lol\", \"BTC\"],\n    \"image\": \"\",\n    \"visible\": true,\n    \"published_at\": \"2021-01-01 08:30:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/articles/61be69b670cdb5e2e5422fe6",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles",
+										"61be69b670cdb5e2e5422fe6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete article",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/articles/61be69b670cdb5e2e5422fe6",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles",
+										"61be69b670cdb5e2e5422fe6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Management test",
+					"item": []
+				},
+				{
+					"name": "cryptos",
+					"item": [
+						{
+							"name": "get cryptos",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is return data\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.data).not.to.equal(undefined)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzNzgzMzI5OCwiZXhwIjoxNjM4NDM4MDk4fQ.dfr2qy7XXmw6K4OLgSzSjjr7EHiDQkX6j5I6coxne2A",
+										"description": "admin\n",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Automatic test",
+			"item": [
+				{
+					"name": "Article test",
+					"item": [
+						{
+							"name": "create article",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Article test\",\n    \"source\": \"https://Article.test.com\",\n    \"content\": \"Ceci est la description du super test article\",\n    \"tags\": [\"Crypto\", \"Test\",\"Lol\", \"BTC\"],\n    \"image\": \"\",\n    \"visible\": true,\n    \"published_at\": \"2021-01-01 08:30:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/article/create",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"article",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get articles",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/articles",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get article by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/articles/61bc8fbf2197a6d0e4d7ab84",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles",
+										"61bc8fbf2197a6d0e4d7ab84"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update article",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Article TEST\",\n    \"source\": \"https://Article.test.com\",\n    \"content\": \"Ceci est la description du super test article\",\n    \"tags\": [\"Crypto\", \"Test\",\"Lol\", \"BTC\"],\n    \"image\": \"\",\n    \"visible\": true,\n    \"published_at\": \"2021-01-01 08:30:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/articles/61bc8fbf2197a6d0e4d7ab84",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles",
+										"61bc8fbf2197a6d0e4d7ab84"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete article",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/articles/61bc8fbf2197a6d0e4d7ab84",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"articles",
+										"61bc8fbf2197a6d0e4d7ab84"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users test",
+					"item": [
+						{
+							"name": "add user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    console.log(jsonData)",
+											"    pm.expect(jsonData.state).to.equal(true);",
+											"});",
+											"",
+											"pm.test(\"Is return id\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.id).not.to.equal(undefined)",
+											"});",
+											"",
+											"pm.test(\"Is return token\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.token).not.to.equal(undefined)",
+											"});",
+											"",
+											"pm.test(\"userId env is set\", function () {",
+											"    var userId = pm.response.json().id;",
+											"    pm.environment.set(\"userId\", userId);",
+											"});",
+											"",
+											"",
+											"pm.test(\"userToken env is set\", function () {",
+											"    var token = pm.response.json().token;",
+											"    pm.environment.set(\"userToken\", token);",
+											"});",
+											"",
+											"pm.test(\"userMail env is set\", function () {",
+											"    var data = JSON.parse(request.data)",
+											"    pm.environment.set(\"userMail\", data.email);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{userToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"postmanTest@epitech.eu\",\n    \"username\" : \"postTest\",\n    \"role\" : \"admin\",\n    \"password\" : \"123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/users/register",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    console.log(jsonData)",
+											"    pm.expect(jsonData.state).to.equal(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{userToken}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/logout/{{userId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"logout",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user logged\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is auth equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.auth).to.equal(true);",
+											"});",
+											"",
+											"pm.test(\"Is return token\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.token).not.to.equal(undefined)",
+											"});",
+											"",
+											"",
+											"pm.test(\"userToken env is set\", function () {",
+											"    var token = pm.response.json().token;",
+											"    pm.environment.set(\"userToken\", token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"postmanTest@epitech.eu\",\n    \"password\" : \"123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get users",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user added\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is return data\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.state).not.to.equal(false)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{userToken}}",
+										"description": "admin\n",
+										"type": "text"
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWY1YTUyZDU4YWUxMmNjYmIwOTlhMSIsImlhdCI6MTYzOTczNTA3NCwiZXhwIjoxNjQwMzM5ODc0fQ.5i6P8UswvU_4lIZrxvsA6ZHIqKODLrSkj1oV6HXcdWk",
+										"description": "admin cameron",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get users by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user getted\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.state).to.equal(true);",
+											"});",
+											"",
+											"pm.test(\"Is return data\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.email).not.to.equal(undefined)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{userToken}}",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/profile/{{userId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"profile",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get users by mail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Is user getted\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.state).to.equal(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{userToken}}",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/getUserByMail?email={{userMail}}",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"getUserByMail"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "{{userMail}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"user updated\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.state).to.equal(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{userToken}}",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"TEST@epitech.eu\",\n    \"username\" : \"Cameron\",\n    \"role\" : \"admin\",\n    \"password\" : \"123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/users/profile/{{userId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"profile",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"user deleted\", function () {",
+											"    console.log(\"delete\", pm.variables.get(\"userId\"))",
+											"    pm.expect(pm.response.code).to.be.oneOf([200,201,202,204]);",
+											"});",
+											"",
+											"pm.test(\"Is state equal to true\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.data.state).to.equal(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{userToken}}",
+										"description": "admin cameron",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/users/{{userId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
